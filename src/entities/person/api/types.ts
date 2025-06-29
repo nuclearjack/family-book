@@ -20,6 +20,9 @@ export interface Person {
   description: string
   sex: 'male' | 'female' | 'other'
   poster: PersonImage | null
+  new_poster: number | null
+  delete_gallery: number[]
+  new_gallery: number[]
   gallery: PersonImage[]
   created_at: Date
   updated_at: Date

@@ -2,31 +2,14 @@
 import type { UploadFileInfo, UploadSettledFileInfo } from 'naive-ui'
 import type { FileUploadResponse } from '@shared/types'
 import { usePersonStore } from '@entities/person'
-import type { PersonFormData } from './types'
+import type { PersonFormData, PersonGalleryItem } from './types'
+import { formToPayload, galleryToFiles, personToForm } from '../mappers'
+import { defaultPersonData } from './defaults'
 
 const loading = ref(false)
 const errors = ref<{ [key: string]: any }>({})
-const galleryData = ref<(UploadFileInfo & { file_id?: number })[]>([])
-const formData = ref<PersonFormData>({
-  relationship: '',
-  name: '',
-  surname: '',
-  patronymic: '',
-  birth_date: null,
-  death_date: null,
-  description: '',
-  sex: 'male',
-  poster: {
-    file_id: null,
-    file_path: ''
-  },
-  new_poster: null,
-  gallery: [],
-  delete_gallery: [],
-  new_gallery: [],
-  created_at: null,
-  updated_at: null
-})
+const galleryData = ref<PersonGalleryItem[]>([])
+const formData = ref<PersonFormData>(defaultPersonData())
 
 export const usePersonForm = () => {
   const router = useRouter()
@@ -38,17 +21,7 @@ export const usePersonForm = () => {
     errors.value = {}
 
     try {
-      const {
-        created_at: createdAt,
-        updated_at: updatedAt,
-        poster,
-        gallery,
-        ...rest
-      } = formData.value
-
-      const payload = { ...rest }
-
-      payload.new_gallery = galleryData.value.map(g => g.file_id as number)
+      const payload = formToPayload(formData.value, galleryData.value)
 
       const res = await personStore.addPerson(payload)
 
@@ -80,17 +53,7 @@ export const usePersonForm = () => {
     errors.value = {}
 
     try {
-      const {
-        created_at: createdAt,
-        updated_at: updatedAt,
-        poster,
-        gallery,
-        ...rest
-      } = formData.value
-
-      const payload = { ...rest }
-
-      payload.new_gallery = galleryData.value.map(g => g.file_id as number)
+      const payload = formToPayload(formData.value, galleryData.value)
 
       const res = await personStore.updatePerson(payload)
 
@@ -221,57 +184,44 @@ export const usePersonForm = () => {
     })
   }
 
+  const removePosterButtonClickHandler = () => {
+    formData.value.new_poster = null
+    formData.value.poster = {
+      file_id: null,
+      file_path: ''
+    }
+  }
+
+  const removePosterHandler = () => {
+    formData.value.poster = {
+      file_id: null,
+      file_path: ''
+    }
+  }
+
+  const removeGalleryItemHandler = (index: number) => {
+    const fileId = galleryData.value[index]?.file_id
+    if (fileId) {
+      formData.value.delete_gallery = [
+        ...formData.value.delete_gallery,
+        fileId
+      ]
+    }
+  }
+
   const initForm = async (userId: number) => {
     const { person } = await personStore.fetchPerson(Number(userId))
-    formData.value = {
-      ...person,
-      birth_date: person.birth_date ? new Date(person.birth_date).getTime() : null,
-      death_date: person.death_date ? new Date(person.death_date).getTime() : null,
-      delete_gallery: [],
-      new_gallery: [],
-      new_poster: null,
-      poster: person.poster
-        ? person.poster
-        : {
-            file_id: null,
-            file_path: ''
-          }
-    }
+    formData.value = personToForm(person)
   }
 
   const initGallery = () => {
-    galleryData.value = formData.value.gallery.map(file => ({
-      id: String(file.file_id!),
-      file_id: file.file_id!,
-      name: file.file_path,
-      status: 'finished',
-      url: file.file_path
-    }))
+    galleryData.value = galleryToFiles(formData.value.gallery)
   }
 
   const reset = () => {
-    errors.value = {}
+    formData.value = defaultPersonData()
     galleryData.value = []
-    formData.value = {
-      relationship: '',
-      name: '',
-      surname: '',
-      patronymic: '',
-      birth_date: null,
-      death_date: null,
-      poster: {
-        file_id: null,
-        file_path: ''
-      },
-      new_poster: null,
-      gallery: [],
-      new_gallery: [],
-      delete_gallery: [],
-      description: '',
-      sex: 'male',
-      created_at: null,
-      updated_at: null
-    }
+    errors.value = {}
   }
 
   return {
@@ -287,6 +237,9 @@ export const usePersonForm = () => {
     uploadPosterFinishHandler,
     uploadGalleryFinishHandler,
     uploadImageErrorHandler,
-    updateFileListHandler
+    updateFileListHandler,
+    removePosterButtonClickHandler,
+    removeGalleryItemHandler,
+    removePosterHandler
   }
 }

@@ -1,7 +1,7 @@
 import { storeToRefs } from 'pinia'
 import { usePersonStore } from '../model/store'
 
-export const usePerson = () => {
+export const usePersonFacade = () => {
   const store = usePersonStore()
 
   const {

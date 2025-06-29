@@ -23,7 +23,6 @@ const themeOverrides: GlobalThemeOverrides = {
     infoColor: '#a65f00'
   },
   Pagination: {
-    // borderRadiusLarge: '6px'
     itemColorActive: '#00403d',
     itemColorHover: '#00403d',
     itemTextColorActive: '#ffffff',

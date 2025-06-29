@@ -17,7 +17,7 @@
               >
                 <n-space>
                   <n-radio
-                    v-for="sex in sexes"
+                    v-for="sex in SEXES"
                     :key="sex.value"
                     :value="sex.value"
                     :label="sex.label"
@@ -143,13 +143,10 @@
             clearable
             @before-upload="loading = true"
             @finish="uploadPosterFinishHandler"
+            @remove="removePosterHandler"
             @error="($event) => {
               uploadImageErrorHandler($event)
               uploadPosterRef?.clear()
-            }"
-            @remove="formData.poster = {
-              file_id: null,
-              file_path: ''
             }"
           >
             <n-upload-dragger
@@ -183,7 +180,10 @@
                 tertiary
                 circle
                 size="small"
-                @click.stop="removePosterHandler"
+                @click.stop="() => {
+                  removePosterButtonClickHandler()
+                  uploadPosterRef?.clear()
+                }"
               >
                 <n-icon size="18">
                   <remove-icon />
@@ -244,9 +244,6 @@
               uploadGalleryRef?.clear()
             }"
           />
-          <!-- <n-slider v-if="formD">
-
-          </n-slider> -->
         </n-card>
       </div>
     </div>
@@ -255,8 +252,8 @@
 
 <script setup lang="ts">
 import { Close as RemoveIcon } from '@vicons/ionicons5'
+import { SEXES } from '../config'
 import { usePersonForm } from '../model'
-import { sexes } from '../config'
 
 const {
   errors,
@@ -266,28 +263,12 @@ const {
   uploadPosterFinishHandler,
   uploadGalleryFinishHandler,
   updateFileListHandler,
-  uploadImageErrorHandler
+  uploadImageErrorHandler,
+  removePosterButtonClickHandler,
+  removePosterHandler,
+  removeGalleryItemHandler
 } = usePersonForm()
 
 const uploadPosterRef = ref()
 const uploadGalleryRef = ref()
-
-const removePosterHandler = () => {
-  uploadPosterRef.value?.clear()
-  formData.value.new_poster = null
-  formData.value.poster = {
-    file_id: null,
-    file_path: ''
-  }
-}
-
-const removeGalleryItemHandler = (index: number) => {
-  const fileId = galleryData.value[index]?.file_id
-  if (fileId) {
-    formData.value.delete_gallery = [
-      ...formData.value.delete_gallery,
-      fileId
-    ]
-  }
-}
 </script>

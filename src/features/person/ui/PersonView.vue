@@ -16,7 +16,7 @@
             >
               <n-space>
                 <n-radio
-                  v-for="sex in sexes"
+                  v-for="sex in SEXES"
                   :key="sex.value"
                   :disabled="sex.value !== formData.sex"
                   :value="sex.value"
@@ -180,14 +180,14 @@
               </n-button>
             </div>
             <div
-              v-if="displayedGallery?.length > DISPLAYED_COUNT"
+              v-if="displayedGallery?.length > DISPLAYED_PERSONS_COUNT"
               class="flex justify-center mt-6 mb-2"
             >
               <n-button
                 type="info"
                 secondary
                 size="large"
-                @click="displayedCount = DISPLAYED_COUNT"
+                @click="displayedCount = DISPLAYED_PERSONS_COUNT"
               >
                 Скрыть
               </n-button>
@@ -201,14 +201,12 @@
 </template>
 
 <script setup lang="ts">
-import { sexes } from '../config'
+import { DISPLAYED_PERSONS_COUNT, SEXES } from '../config'
 import { usePersonForm } from '../model'
-
-const DISPLAYED_COUNT = 16
 
 const { formData } = usePersonForm()
 
-const displayedCount = ref(DISPLAYED_COUNT)
+const displayedCount = ref(DISPLAYED_PERSONS_COUNT)
 
 const displayedGallery = computed(() => {
   return formData.value.gallery?.slice(0, displayedCount.value) || []

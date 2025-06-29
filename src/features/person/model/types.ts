@@ -1,4 +1,5 @@
 import type { PersonImage } from '@entities/person'
+import type { UploadFileInfo } from 'naive-ui'
 
 export interface PersonFormData {
   user_id?: number
@@ -19,3 +20,5 @@ export interface PersonFormData {
   created_at: Date | null
   updated_at: Date | null
 }
+
+export type PersonGalleryItem = (UploadFileInfo & { file_id?: number })

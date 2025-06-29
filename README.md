@@ -1,75 +1,29 @@
-# Nuxt Minimal Starter
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install dependencies:
+## Development
 
 ```bash
-# npm
-npm install
+#git
+git pull
 
-# pnpm
-pnpm install
+#npm
+npm i
 
-# yarn
-yarn install
+# build
+docker compose up
 
-# bun
-bun install
+# init migration
+docker compose exec app npm run migrate
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
 
 ## Production
 
-Build the application for production:
-
 ```bash
-# npm
-npm run build
+#git
+git pull
 
-# pnpm
-pnpm build
+# build
+docker compose up --build
 
-# yarn
-yarn build
-
-# bun
-bun run build
+# init migration
+docker compose exec app npm run migrate
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
