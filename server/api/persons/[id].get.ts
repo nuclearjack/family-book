@@ -1,5 +1,10 @@
 import { Person, PersonFile, File } from '~/server/models'
 
+export interface PersonImage {
+  file_id: number | null
+  file_path: string
+}
+
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
   const userId = Number(session?.user?.user_id)
@@ -40,15 +45,9 @@ export default defineEventHandler(async (event) => {
 
   const { files, ...rest } = person.toJSON()
 
-  let poster:{
-    file_id: number
-    file_path: string
-  } | null = null
+  let poster: PersonImage | null = null
 
-  const gallery: {
-    file_id: number
-    file_path: string
-  }[] = []
+  const gallery: PersonImage[] = []
 
   if (Array.isArray(files)) {
     for (const pf of files) {

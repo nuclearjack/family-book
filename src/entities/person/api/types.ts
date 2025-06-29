@@ -1,7 +1,12 @@
 import type { PaginationInfo } from '@shared/types'
-import type { File } from '@entities/file'
+// import type { File } from '@entities/file'
 
 export type Sex = 'male' | 'female'
+
+export interface PersonImage {
+  file_id: number | null
+  file_path: string
+}
 
 export interface Person {
   person_id: number
@@ -14,14 +19,8 @@ export interface Person {
   death_date: string | null
   description: string
   sex: 'male' | 'female' | 'other'
-  poster: {
-    file_id: number
-    file_path: string
-  } | null
-  gallery: {
-    file_id: number
-    file_path: string
-  }[]
+  poster: PersonImage | null
+  gallery: PersonImage[]
   created_at: Date
   updated_at: Date
 }
@@ -84,12 +83,12 @@ export interface DeletePersonResponse {
   data: { deleted: boolean }
 }
 
-export interface PersonFile {
-  person_file_id: number
-  person_id: number
-  file_id: number
-  is_main: boolean
-  sort_order: number
-  added_at: string
-  file?: File
-}
+// export interface PersonFile {
+//   person_file_id: number
+//   person_id: number
+//   file_id: number
+//   is_main: boolean
+//   sort_order: number
+//   added_at: string
+//   file?: File
+// }

@@ -1,3 +1,5 @@
+import type { PersonImage } from '@entities/person'
+
 export interface PersonFormData {
   user_id?: number
   person_id?: number
@@ -7,15 +9,9 @@ export interface PersonFormData {
   description: string
   relationship: string
   sex: 'male' | 'female' | 'other'
-  poster: {
-    file_id: number | null
-    file_path: string
-  },
+  poster: PersonImage
+  gallery: PersonImage[]
   new_poster: number | null
-  gallery: {
-    file_id: number
-    file_path: string
-  }[]
   new_gallery: number[]
   delete_gallery: number[]
   birth_date: number | null

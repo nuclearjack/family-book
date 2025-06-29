@@ -241,8 +241,8 @@ export const usePersonForm = () => {
 
   const initGallery = () => {
     galleryData.value = formData.value.gallery.map(file => ({
-      id: String(file.file_id),
-      file_id: file.file_id,
+      id: String(file.file_id!),
+      file_id: file.file_id!,
       name: file.file_path,
       status: 'finished',
       url: file.file_path
