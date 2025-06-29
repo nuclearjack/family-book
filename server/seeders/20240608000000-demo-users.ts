@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import bcrypt from 'bcryptjs'
 import type { QueryInterface } from 'sequelize'
 
@@ -9,10 +10,13 @@ export const up = async (queryInterface: QueryInterface) => {
         password: bcrypt.hashSync(process.env.ADMIN_PASS as string, 10),
         name: null,
         surname: null,
-        patronymic: null
+        patronymic: null,
+        created_at: new Date(),
+        updated_at: new Date()
       }
     ])
-  } catch {
+  } catch (e) {
+    console.log(e)
     console.log('Пользователи уже существуют, пропускаем сидер')
   }
 }
