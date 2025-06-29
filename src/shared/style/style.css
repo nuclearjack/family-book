@@ -1,0 +1,17 @@
+/* Menu */
+.n-menu .n-menu-item-content:hover {
+  text-decoration: underline;
+}
+.n-menu .n-menu-item-content--selected {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Upload */
+.n-upload .n-upload-trigger.n-upload-trigger--disabled {
+  opacity: 100;
+  cursor: pointer;
+}
+.n-upload .n-upload-dragger.n-upload-dragger--disabled {
+  cursor: pointer;
+}
