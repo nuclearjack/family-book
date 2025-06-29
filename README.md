@@ -2,6 +2,16 @@
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Deploy
+
+```bash
+# build
+docker compose up --build
+
+# init migration
+docker compose exec app npm run migrate
+```
+
 ## Setup
 
 Make sure to install dependencies:
