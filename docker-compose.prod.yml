@@ -5,30 +5,22 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev
-    ports:
-      - "3000:3000"
-    environment:
-      - DB_HOST=db
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
+      target: prod
+    expose:
+      - "3000"
+    env_file:
+      - .env
     depends_on:
       db:
         condition: service_healthy
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - ./nuxt:/web
-    command: npm run dev
     networks:
       - app-network
+    restart: always
 
   db:
     image: postgres:16-alpine
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -42,11 +34,26 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
+    restart: always
+      
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - app-network
+    environment:
+      - CADDY_DOMAIN=${PROD_CADDY_DOMAIN}
+    volumes:
+      - "caddy-data:/data/caddy"
+      - ./caddy/Caddyfile.prod:/etc/caddy/Caddyfile
+    restart: always
 
   adminer:
     image: wodby/adminer:latest
-    ports:
-      - "8080:9000"
+    expose:
+      - "9000"
     environment:
       - ADMINER_DEFAULT_SERVER=db
     depends_on:
@@ -54,9 +61,12 @@ services:
         condition: service_healthy
     networks:
       - app-network
+    restart: always
 
 volumes:
   postgres_data:
+    driver: local
+  caddy-data:
     driver: local
 
 networks:

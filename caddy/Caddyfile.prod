@@ -1,0 +1,10 @@
+https://{$CADDY_DOMAIN} {
+  @cachedFiles {
+    path *.jpg *.jpeg *.png *.gif *.ico *.js *.css
+  }
+  header @cachedFiles Cache-Control "public, max-age=604800, must-revalidate"
+  encode gzip
+
+  reverse_proxy /adminer http://adminer:9000
+  reverse_proxy http://app:3000
+}
