@@ -26,20 +26,6 @@
               </n-radio-group>
             </n-form-item>
             <n-form-item
-              :validation-status="errors.name && 'error'"
-              :feedback="errors.name || ''"
-              :show-feedback="!!errors.name"
-              label="Имя"
-              path="name"
-            >
-              <n-input
-                v-model:value="formData.name"
-                size="large"
-                placeholder="Имя"
-                clearable
-              />
-            </n-form-item>
-            <n-form-item
               :validation-status="errors.surname && 'error'"
               :feedback="errors.surname || ''"
               :show-feedback="!!errors.surname"
@@ -50,6 +36,20 @@
                 v-model:value="formData.surname"
                 size="large"
                 placeholder="Фамилия"
+                clearable
+              />
+            </n-form-item>
+                        <n-form-item
+              :validation-status="errors.name && 'error'"
+              :feedback="errors.name || ''"
+              :show-feedback="!!errors.name"
+              label="Имя"
+              path="name"
+            >
+              <n-input
+                v-model:value="formData.name"
+                size="large"
+                placeholder="Имя"
                 clearable
               />
             </n-form-item>
