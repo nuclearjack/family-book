@@ -29,15 +29,19 @@ const themeOverrides: GlobalThemeOverrides = {
     itemTextColorHover: '#ffffff',
     itemColorActiveHover: '#00403d'
   },
-  Menu: {
-    itemTextColor: '#ffffff',
-    itemColorActiveHorizontal: '#ffffff',
-    itemTextColorActiveHorizontal: '#ffffff',
-    itemTextColorActiveHoverHorizontal: '#ffffff',
-    itemTextColorHoverHorizontal: '#ffffff',
-    itemColorHoverHorizontal: '#ffffff',
-    itemTextColorHorizontal: '#ffffff',
-    itemBorderRadius: '8px'
+  // Menu: {
+  //   itemTextColor: '#ffffff',
+  //   itemColorActiveHorizontal: '#ffffff',
+  //   itemTextColorActiveHorizontal: '#ffffff',
+  //   itemTextColorActiveHoverHorizontal: '#ffffff',
+  //   itemTextColorHoverHorizontal: '#ffffff',
+  //   itemColorHoverHorizontal: '#ffffff',
+  //   itemTextColorHorizontal: '#ffffff',
+  //   itemBorderRadius: '8px'
+  // },
+  Form: {
+    labelFontSizeTopLarge: '16px'
+    // labelTextColor: '#a65f00'
   }
 }
 </script>

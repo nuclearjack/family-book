@@ -9,12 +9,13 @@
       @submit.prevent="$emit('submit', formData)"
     >
       <n-form-item
-        label="Никнейм"
-        path="nickname"
         :validation-status="errors.nickname ? 'error' : undefined"
         :feedback="errors.nickname || ''"
         :show-feedback="!!errors.nickname"
-      >
+        label="Никнейм"
+        path="nickname"
+        required
+        >
         <n-input
           v-model:value="formData.nickname"
           placeholder="Введите никнейм"
@@ -23,11 +24,12 @@
         />
       </n-form-item>
       <n-form-item
-        label="Пароль"
-        path="password"
         :validation-status="errors.password ? 'error' : undefined"
         :feedback="errors.password || ''"
         :show-feedback="!!errors.password"
+        label="Пароль"
+        path="password"
+        required
       >
         <n-input
           v-model:value="formData.password"

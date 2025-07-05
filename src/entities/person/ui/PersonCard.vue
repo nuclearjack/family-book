@@ -17,7 +17,7 @@
         >
         <div
           v-else
-          class="h-full w-full"
+          class="h-full w-full bg-gray-100/100"
         >
           <img
             src="/images/default-person.png"
@@ -26,12 +26,13 @@
           >
         </div>
 
-        <div class="text-lg text-white px-6 py-2 line-clamp-1 absolute left-0 top-0 z-10">
+        <div
+          class="text-lg text-white px-6 py-2 line-clamp-1 absolute left-0 top-0 font-semibold z-10 line-clamp-1">
           #{{ person.relationship }}
         </div>
 
         <div
-          class="text-lg text-white px-6 py-2 absolute left-0 bottom-0 z-10"
+          class="text-lg text-white px-6 py-2 absolute left-0 bottom-0 z-10 font-semibold"
         >
           {{ person.birth_date }} - {{ person.death_date }}
         </div>

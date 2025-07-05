@@ -1,7 +1,6 @@
 import { debounce } from 'lodash-es'
-import { formatDate } from '@shared/lib'
 import { usePersonDelete, usePersonListFilters } from '@features/person'
-import { usePersonStore, type Person } from '@entities/person'
+import { usePersonStore } from '@entities/person'
 
 export const usePersonListModel = () => {
   const route = useRoute()
@@ -57,13 +56,13 @@ export const usePersonListModel = () => {
     cancelDelete()
   }
 
-  const preparePerson = (person: Person) => {
-    return {
-      ...person,
-      birth_date: person.birth_date ? formatDate(person.birth_date) : 'Нет данных',
-      death_date: person.death_date ? formatDate(person.death_date) : 'наши дни'
-    }
-  }
+  // const preparePerson = (person: Person) => {
+  //   return {
+  //     ...person,
+  //     birth_date: person.birth_date ? formatDate(person.birth_date) : 'Нет данных',
+  //     death_date: person.death_date ? formatDate(person.death_date) : 'наши дни'
+  //   }
+  // }
 
   watch(
     () => route.query,
@@ -81,7 +80,7 @@ export const usePersonListModel = () => {
     handleShowDelete,
     handleHideDelete,
     handleDelete,
-    fetchPersons,
-    preparePerson
+    fetchPersons
+    // preparePerson
   }
 }

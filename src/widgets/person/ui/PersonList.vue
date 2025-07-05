@@ -68,7 +68,7 @@
         <person-card
           v-for="person in persons"
           :key="person.person_id"
-          :person="preparePerson(person)"
+          :person="personToCard(person)"
           @click:image="$router.push(`/persons/${person.person_id}`)"
           @delete="handleShowDelete"
           @update="$router.push(`/persons/edit/${$event}`)"
@@ -110,6 +110,7 @@ import {
   AddCircleOutline as AddCircleIcon
 } from '@vicons/ionicons5'
 import PersonDeleteModal from '@features/person/ui/PersonDeleteModal.vue'
+import { personToCard } from './../mappers'
 
 const store = usePersonStore()
 const { persons, isLoading, error, pagination } = storeToRefs(store)
@@ -122,7 +123,6 @@ const {
   handlePageChange,
   handleShowDelete,
   handleHideDelete,
-  handleDelete,
-  preparePerson
+  handleDelete
 } = usePersonListModel()
 </script>

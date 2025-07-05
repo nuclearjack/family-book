@@ -10,6 +10,7 @@
               :show-feedback="!!errors.sex"
               label="Пол"
               path="sex"
+              size="large"
             >
               <n-radio-group
                 v-model:value="formData.sex"
@@ -26,25 +27,13 @@
               </n-radio-group>
             </n-form-item>
             <n-form-item
-              :validation-status="errors.name && 'error'"
-              :feedback="errors.name || ''"
-              :show-feedback="!!errors.name"
-              label="Имя"
-              path="name"
-            >
-              <n-input
-                v-model:value="formData.name"
-                size="large"
-                placeholder="Имя"
-                clearable
-              />
-            </n-form-item>
-            <n-form-item
               :validation-status="errors.surname && 'error'"
               :feedback="errors.surname || ''"
               :show-feedback="!!errors.surname"
               label="Фамилия"
               path="surname"
+              size="large"
+              required
             >
               <n-input
                 v-model:value="formData.surname"
@@ -54,11 +43,28 @@
               />
             </n-form-item>
             <n-form-item
+              :validation-status="errors.name && 'error'"
+              :feedback="errors.name || ''"
+              :show-feedback="!!errors.name"
+              label="Имя"
+              path="name"
+              size="large"
+              required
+            >
+              <n-input
+                v-model:value="formData.name"
+                size="large"
+                placeholder="Имя"
+                clearable
+              />
+            </n-form-item>
+            <n-form-item
               :validation-status="errors.patronymic && 'error'"
               :feedback="errors.patronymic || ''"
               :show-feedback="!!errors.patronymic"
               label="Отчество"
               path="patronymic"
+              size="large"
             >
               <n-input
                 v-model:value="formData.patronymic"
@@ -72,7 +78,9 @@
               :feedback="errors.relationship || ''"
               :show-feedback="!!errors.relationship"
               label="Кем приходится"
+              required
               path="relationship"
+              size="large"
             >
               <n-input
                 v-model:value="formData.relationship"
@@ -89,6 +97,7 @@
                 class="w-1/2"
                 label="Годы жизни"
                 path="birth_date"
+                size="large"
               >
                 <n-date-picker
                   v-model:value="formData.birth_date"
@@ -107,6 +116,7 @@
                 class="w-1/2"
                 label=""
                 path="birth_date"
+                size="large"
               >
                 <n-date-picker
                   v-model:value="formData.death_date"
@@ -130,6 +140,7 @@
           :show-feedback="!!errors.image"
           label="Основное фото"
           path="image"
+          size="large"
         >
           <n-upload
             ref="uploadPosterRef"
@@ -205,6 +216,7 @@
             :show-feedback="!!errors.description"
             label="Биография"
             path="birth_date"
+            size="large"
           >
             <n-input
               v-model:value="formData.description"

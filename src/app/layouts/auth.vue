@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col min-h-screen bg-[rgb(255,251,235,0.3)]">
-    <header class="flex justify-between items-center px-8 py-3 !bg-theme-primary text-white">
+    <header class="flex justify-between items-center px-4 md:px-8 py-3 !bg-theme-primary text-white">
       <div class="text-xl font-semibold">
         <div class="flex items-center gap-x-2">
           <img
@@ -19,29 +19,12 @@
       <slot />
     </div>
 
-    <footer class="px-8 py-4 mt-auto bg-theme-primary text-white">
-      <n-grid
-        cols="3"
-        x-gap="24"
-        y-gap="24"
-        class="text-lg"
-      >
-        <n-gi>
-          <span>
-            Family Book App
-          </span>
-        </n-gi>
-        <n-gi class="text-center">
-          <span>
-            Made by NuclearKek
-          </span>
-        </n-gi>
-        <n-gi class="text-right">
-          <span>
-            {{ new Date().getFullYear() }}
-          </span>
-        </n-gi>
-      </n-grid>
+    <footer class="px-4 md:px-8 py-4 mt-auto bg-theme-primary text-white">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-base md:text-lg">
+        <div class="text-center sm:text-left">Family Book App</div>
+        <div class="text-center">Made by NuclearKek</div>
+        <div class="text-center sm:text-right">{{ new Date().getFullYear() }}</div>
+      </div>
     </footer>
   </div>
 </template>

@@ -9,6 +9,7 @@
             :show-feedback="false"
             label="Пол"
             path="sex"
+            size="large"
           >
             <n-radio-group
               :value="formData.sex"
@@ -29,6 +30,7 @@
             v-if="formData.name"
             :show-feedback="false"
             label="Имя"
+            size="large"
           >
             <n-input
               v-model:value="formData.name"
@@ -40,6 +42,7 @@
             v-if="formData.surname"
             :show-feedback="false"
             label="Фамилия"
+            size="large"
           >
             <n-input
               v-model:value="formData.surname"
@@ -51,6 +54,7 @@
             v-if="formData.patronymic"
             :show-feedback="false"
             label="Отчество"
+            size="large"
           >
             <n-input
               v-model:value="formData.patronymic"
@@ -62,6 +66,7 @@
             v-if="formData.relationship"
             :show-feedback="false"
             label="Кем приходится"
+            size="large"
           >
             <n-input
               v-model:value="formData.relationship"
@@ -73,6 +78,7 @@
             v-if="formData.birth_date"
             :show-feedback="false"
             label="Дата рождения"
+            size="large"
           >
             <n-date-picker
               v-model:value="formData.birth_date"
@@ -87,6 +93,7 @@
             v-if="formData.death_date"
             :show-feedback="false"
             label="Дата смерти"
+            size="large"
           >
             <n-date-picker
               v-model:value="formData.death_date"
@@ -106,6 +113,7 @@
           v-if="formData.poster"
           :show-feedback="false"
           label="Основное фото"
+          size="large"
         >
           <div class="w-full flex justify-center p-6">
             <img
@@ -128,6 +136,7 @@
             v-if="formData.description"
             :show-feedback="false"
             label="Биография"
+            size="large"
           >
             <n-input
               v-model:value="formData.description"
@@ -155,7 +164,7 @@
             >
               <div
                 v-for="galleryItem in displayedGallery"
-                :key="galleryItem.file_id"
+                :key="galleryItem.file_id!"
               >
                 <n-image
                   :src="galleryItem.file_path"
@@ -201,7 +210,7 @@
 </template>
 
 <script setup lang="ts">
-import { DISPLAYED_PERSONS_COUNT, SEXES } from '../config'
+import { DISPLAYED_PERSONS_COUNT, ADD_PERSONS_COUNT, SEXES } from '../config'
 import { usePersonForm } from '../model'
 
 const { formData } = usePersonForm()
@@ -213,6 +222,6 @@ const displayedGallery = computed(() => {
 })
 
 const loadMoreGallery = () => {
-  displayedCount.value += 16
+  displayedCount.value += ADD_PERSONS_COUNT
 }
 </script>

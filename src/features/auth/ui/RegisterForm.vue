@@ -61,7 +61,7 @@
       >
         <n-input
           v-model:value="formData.name"
-          placeholder="Введите имя (необязательно)"
+          placeholder="Введите имя"
           size="large"
           clearable
         />
@@ -75,7 +75,7 @@
       >
         <n-input
           v-model:value="formData.surname"
-          placeholder="Введите фамилию (необязательно)"
+          placeholder="Введите фамилию"
           size="large"
           clearable
         />
@@ -89,7 +89,7 @@
       >
         <n-input
           v-model:value="formData.patronymic"
-          placeholder="Введите отчество (необязательно)"
+          placeholder="Введите отчество"
           size="large"
           clearable
         />
