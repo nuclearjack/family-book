@@ -34,7 +34,8 @@
         <div
           class="text-lg text-white px-6 py-2 absolute left-0 bottom-0 z-10 font-semibold"
         >
-          {{ person.birth_date }} - {{ person.death_date }}
+          {{ person.birth_date }}
+          {{ person.death_date ? ` - ${person.death_date}` : '' }}
         </div>
 
         <div class="pointer-events-none absolute left-0 bottom-0 w-full h-12 bg-gradient-to-t from-gray-800 to-transparent"/>
