@@ -27,18 +27,6 @@
             </n-radio-group>
           </n-form-item>
           <n-form-item
-            v-if="formData.name"
-            :show-feedback="false"
-            label="Имя"
-            size="large"
-          >
-            <n-input
-              v-model:value="formData.name"
-              size="large"
-              readonly
-            />
-          </n-form-item>
-          <n-form-item
             v-if="formData.surname"
             :show-feedback="false"
             label="Фамилия"
@@ -46,6 +34,18 @@
           >
             <n-input
               v-model:value="formData.surname"
+              size="large"
+              readonly
+            />
+          </n-form-item>
+          <n-form-item
+            v-if="formData.name"
+            :show-feedback="false"
+            label="Имя"
+            size="large"
+          >
+            <n-input
+              v-model:value="formData.name"
               size="large"
               readonly
             />
