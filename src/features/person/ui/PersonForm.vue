@@ -42,20 +42,6 @@
                 clearable
               />
             </n-form-item>
-                        <n-form-item
-              :validation-status="errors.name && 'error'"
-              :feedback="errors.name || ''"
-              :show-feedback="!!errors.name"
-              label="Имя"
-              path="name"
-            >
-              <n-input
-                v-model:value="formData.name"
-                size="large"
-                placeholder="Имя"
-                clearable
-              />
-            </n-form-item>
             <n-form-item
               :validation-status="errors.name && 'error'"
               :feedback="errors.name || ''"
