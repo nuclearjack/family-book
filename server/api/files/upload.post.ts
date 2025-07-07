@@ -3,7 +3,7 @@ import { promises as fs } from 'fs'
 import File from '../../models/file.model'
 import { getFileType } from '~/server/utils/file'
 
-const UPLOAD_DIR = 'public/uploads'
+const UPLOAD_DIR = 'uploads'
 const FORM_CONFIG = {
   uploadDir: UPLOAD_DIR,
   keepExtensions: true,
@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
       user_id: userId,
       original_name: uploaded.originalFilename || 'unknown',
       file_name: uploaded.newFilename || '',
-      file_path: `/uploads/${uploaded.newFilename}`,
+      file_path: `/api/uploads/${uploaded.newFilename}`,
       file_size: uploaded.size || 0,
       mime_type: uploaded.mimetype || 'application/octet-stream',
       file_type: getFileType(uploaded.mimetype || 'application/octet-stream'),
